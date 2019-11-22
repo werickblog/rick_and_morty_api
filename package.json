@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "test": "NODE_ENV=test mocha  --require babel-register ./src/test",
+    "start": "NODE_ENV=production node .",
+    "dev": "NODE_ENV=dev nodemon -i \"*.test.js\" ."
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.19.0",
+    "chalk": "^3.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12",
+    "morgan": "^1.9.1"
+  },
+  "name": "rick_and_morty_api",
+  "version": "1.0.0",
+  "main": "src",
+  "repository": "https://github.com/werickblog/rick_and_morty_api.git",
+  "author": "tesh254 <ewachira254@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2"
+  }
+}
