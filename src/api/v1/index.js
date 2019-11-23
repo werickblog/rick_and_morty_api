@@ -1,5 +1,8 @@
-import express from 'express'
+import express from "express";
+import characterAPI from "./routes/characters";
 
-const v1 = express.Router()
+const v1 = express.Router();
 
-export default v1
+v1.use("/v1", characterAPI);
+
+export default v1;
