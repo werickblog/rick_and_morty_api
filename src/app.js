@@ -18,7 +18,7 @@ const app = express();
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 1,
+  max: 1000,
   message: {
     message:
       "Exceeded your allocated API calls, try again after a couple of minutes",

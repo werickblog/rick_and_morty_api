@@ -8,9 +8,6 @@ node_js:
 env:
   matrix:
     - MONGODB=3.2
-    - MONGODB=3.4
-    - MONGODB=3.6
-    - MONGODB=4.0
 
 services:
   - docker
@@ -18,9 +15,11 @@ services:
 before_script:
   - docker run -d -p 27017:27017 mongo:$MONGODB
   - docker ps -a
+  - npm install coveralls -g
 
 script:
   - TEST_DB_URL=mongodb://localhost:27017/rick_and_morty_test travis_retry yarn test
 
 after_success:
-  - npm install coveralls -g && yarn test --coverageReporters=text-lcov | coveralls
+  - TEST_DB_URL=mongodb://localhost:27017/rick_and_morty_test travis_retry yarn test
+  - npm run coveralls
