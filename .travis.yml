@@ -21,4 +21,4 @@ script:
   - TEST_DB_URL=mongodb://localhost:27017/rick_and_morty_test travis_retry yarn test
 
 after_success:
-  - coveralls
+  - npm run coveralls
