@@ -6,10 +6,27 @@ import cors from "cors";
 import dotenv from "dotenv";
 import chalk from "chalk";
 import mongoose from "mongoose";
+import rateLimit from "express-rate-limit";
 
 import config from "./config";
 
 const app = express();
+
+// API rate limit initialization
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 1,
+  message: {
+    message:
+      "Exceeded your allocated API calls, try again after a couple of minutes",
+    api_calls_limit: 1000,
+    api_calls_renewal_time: "15 minutes"
+  },
+  statusCode: 429
+});
+
+app.use("/api/", apiLimiter);
 
 // Configure Dotenv to read environment variables from .env file
 // automatically
@@ -33,6 +50,10 @@ mongoose.connect(config.mongo, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
+});
+
+app.get("/api/get", (req, res) => {
+  res.status(200).json({ message: "something amazing" });
 });
 
 mongoose.connection.on("open", err => {
