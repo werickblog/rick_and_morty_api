@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "test": "NODE_ENV=test nyc mocha  --require babel-register ./src/test",
+    "test": "NODE_ENV=test mocha  --require babel-register ./src/test",
     "start": "NODE_ENV=production node .",
-    "dev": "NODE_ENV=dev nodemon -i \"*.test.js\" ."
+    "dev": "NODE_ENV=dev nodemon -i \"*.test.js\" .",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "cover": "NODE_ENV=test nyc mocha  --require babel-register ./src/test"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.0.8",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1"
   }
