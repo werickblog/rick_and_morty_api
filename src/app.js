@@ -10,6 +10,8 @@ import rateLimit from "express-rate-limit";
 
 import config from "./config";
 
+import v1 from './api/v1'
+
 const app = express();
 
 // API rate limit initialization
@@ -52,10 +54,6 @@ mongoose.connect(config.mongo, {
   useUnifiedTopology: true
 });
 
-app.get("/api/get", (req, res) => {
-  res.status(200).json({ message: "something amazing" });
-});
-
 mongoose.connection.on("open", err => {
   if (err) console.log(chalk.red("Error connecting to database"));
   console.log(
@@ -65,6 +63,9 @@ mongoose.connection.on("open", err => {
 
 // Set port
 app.set("port", process.env.PORT || 5000);
+
+// Endpoints
+app.use('/api', v1) // v1 API endpoints
 
 // Initialize server
 const server = app.listen(app.get("port"), err => {
