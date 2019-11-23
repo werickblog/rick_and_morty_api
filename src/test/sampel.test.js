@@ -11,6 +11,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 after(done => {
+  mongoose.connection.dropDatabase()
   mongoose.disconnect(done);
   stop(done);
 });
