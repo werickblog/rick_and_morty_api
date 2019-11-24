@@ -24,7 +24,7 @@ const locationSchema = Schema(
       type: String,
       required: true
     },
-    id: {
+    location_id: {
       type: Number,
       required: true,
       unique: true

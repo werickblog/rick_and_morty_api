@@ -28,7 +28,7 @@ describe("Location controllers", () => {
   });
 
   describe("GET /locations/:id", () => {
-    it("should fetch a non existing character", done => {
+    it("should fetch a non existing location", done => {
       chai
         .request(app)
         .get("/api/v1/locations/10000")
@@ -48,7 +48,7 @@ describe("Location controllers", () => {
         bio: "test",
         dimension: "test",
         url: "test",
-        id: 1
+        location_id: 1
       });
       location.save().then(() => {
         chai
