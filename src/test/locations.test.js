@@ -2,7 +2,6 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import mongoose from "mongoose";
 import app, { stop } from "../app";
-import Character from "../model/character";
 import Location from "../model/location";
 
 const { expect } = chai;
@@ -14,56 +13,47 @@ after(done => {
   stop(done);
 });
 
-describe("Character tests suite", () => {
-  describe("GET /characters", () => {
-    it("should get all characters from an API", done => {
+describe("Location controllers", () => {
+  describe("GET /locations", () => {
+    it("should get all locations from an API", done => {
       chai
         .request(app)
-        .get("/api/v1/characters")
+        .get("/api/v1/locations")
         .end((err, res) => {
           expect(res.status).to.equals(200);
-          expect(typeof res.body.characters).to.equals("object");
+          expect(typeof res.body.locations).to.equals("object");
           done();
         });
     });
   });
 
-  describe("GET /characters/:id", () => {
-    // Fetch non existing character
+  describe("GET /locations/:id", () => {
     it("should fetch a non existing character", done => {
       chai
         .request(app)
-        .get("/api/v1/characters/10000")
+        .get("/api/v1/locations/10000")
         .end((err, res) => {
           expect(res.status).to.equals(404);
           expect(res.body.message).to.equals(
-            "Character was not found please, suggest to erick@werick.codes"
+            "Location was not found please, suggest to erick@werick.codes"
           );
           done();
         });
     });
-    // existing character
+
     it("should fetch an existing character", done => {
-      const character = new Character({
+      const location = new Location({
         name: "test",
-        aka: "test",
-        species: "test",
-        age: 40,
+        type: "test",
+        bio: "test",
+        dimension: "test",
         url: "test",
-        id: 1,
-        status: 'test',
-        occupation: 'test',
-        origin: null,
-        home_planet: null,
-        image: 'string',
-        dimension: 'test',
-        bio: 'test',
-        gender: 'test'
+        id: 1
       });
-      character.save().then(() => {
+      location.save().then(() => {
         chai
           .request(app)
-          .get("/api/v1/characters/1")
+          .get("/api/v1/locations/1")
           .end((err, res) => {
             expect(res.status).to.equals(200);
             done();

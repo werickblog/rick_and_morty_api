@@ -30,7 +30,7 @@ const characterSchema = Schema(
     },
     origin: {
       type: Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: 'Location'
     },
     home_planet: {

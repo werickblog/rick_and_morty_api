@@ -55,6 +55,7 @@ mongoose.connect(config.mongo, {
 });
 
 mongoose.connection.on("open", err => {
+  /* istanbul ignore next */
   if (err) console.log(chalk.red("Error connecting to database"));
   console.log(
     chalk.green(`Connected to database successfully ${config.mongo}`)
@@ -69,6 +70,7 @@ app.use('/api', v1) // v1 API endpoints
 
 // Initialize server
 const server = app.listen(app.get("port"), err => {
+  /* istanbul ignore next */
   if (err) {
     console.log(chalk.red(err.message));
   } else {
