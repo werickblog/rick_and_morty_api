@@ -48,7 +48,8 @@ describe("Location controllers", () => {
         bio: "test",
         dimension: "test",
         url: "test",
-        location_id: 1
+        location_id: 1,
+        image: 'test'
       });
       location.save().then(() => {
         chai
