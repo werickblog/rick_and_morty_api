@@ -10,7 +10,7 @@ export const fetchCharacters = async (req, res) => {
 };
 
 export const fetchSingleCharacterController = async (req, res) => {
-  const character = await Character.findOne({ id: req.params.character_id });
+  const character = await Character.findOne({ character_id: req.params.character_id });
 
   if (character) {
     res.status(200).json({

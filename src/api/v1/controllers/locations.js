@@ -10,7 +10,7 @@ export const fetchLocationsController = async (req, res) => {
 }
 
 export const fetchSingleLocationController = async (req, res) => {
-    const location = await Location.findOne({ id: req.params.location_id })
+    const location = await Location.findOne({ location_id: req.params.location_id })
 
     if (location) {
         res.status(200).json({

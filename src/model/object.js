@@ -21,10 +21,15 @@ const objectSchema = Schema(
       type: String,
       required: true
     },
-    relationships: {
+    relationship: {
       type: Schema.Types.ObjectId,
       ref: "Character",
       required: false
+    },
+    object_id: {
+      type: Number,
+      required: true,
+      unique: true
     }
   },
   {

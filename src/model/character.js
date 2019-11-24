@@ -31,12 +31,12 @@ const characterSchema = Schema(
     origin: {
       type: Schema.Types.ObjectId,
       required: false,
-      ref: 'Location'
+      ref: "Location"
     },
     home_planet: {
-        type: Schema.Types.ObjectId,
-        ref: 'Location',
-        required: false
+      type: Schema.Types.ObjectId,
+      ref: "Location",
+      required: false
     },
     image: {
       type: String,
@@ -47,21 +47,21 @@ const characterSchema = Schema(
       required: true
     },
     dimension: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     bio: {
-        type:String,
-        required: true
+      type: String,
+      required: true
     },
-    id: {
-        type: Number,
-        unique: true,
-        required: true
+    character_id: {
+      type: Number,
+      unique: true,
+      required: true
     },
     gender: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     }
   },
   {
