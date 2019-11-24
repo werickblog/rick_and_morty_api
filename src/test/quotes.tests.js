@@ -2,7 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import mongoose from "mongoose";
 import app, { stop } from "../app";
-import Tool from "../model/object";
+import Quotes from "../model/quote";
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -13,12 +13,12 @@ after(done => {
   stop(done);
 });
 
-describe("Object controllers", () => {
-  describe("GET /objects", () => {
-    it("should get all objects from an API", done => {
+describe("Quote controller", () => {
+  describe("GET /quotes", () => {
+    it("should get all quotes from an API", done => {
       chai
         .request(app)
-        .get("/api/v1/objects")
+        .get("/api/v1/quotes")
         .end((err, res) => {
           expect(res.status).to.equals(200);
           done();
@@ -26,30 +26,28 @@ describe("Object controllers", () => {
     });
   });
 
-  describe("/GET /objects/:id", () => {
-    it("should get a single object from an API", done => {
+  describe("GET /quotes/:id", () => {
+    it("should get not found quote", done => {
       chai
         .request(app)
-        .get("/api/v1/objects/1000")
+        .get("/api/v1/quotes/1100")
         .end((err, res) => {
           expect(res.status).to.equals(404);
           done();
         });
     });
 
-    it("should fetch an existing object", done => {
-      const object = new Tool({
-        name: "test",
-        status: "test",
+    it("should get an existing quote", done => {
+      const quote = new Quotes({
+        quote: "test",
         bio: "test",
-        object_id: 1,
-        image: 'test'
+        quote_id: 1
       });
 
-      object.save().then(() => {
+      quote.save().then(() => {
         chai
           .request(app)
-          .get("/api/v1/objects/1")
+          .get("/api/v1/quotes/1")
           .end((err, res) => {
             expect(res.status).to.equals(200);
             done();

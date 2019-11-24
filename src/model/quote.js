@@ -16,6 +16,10 @@ const quoteSchema = Schema(
     bio: {
       type: String,
       required: true
+    },
+    quote_id: {
+      type: Number, 
+      required: true
     }
   },
   {
