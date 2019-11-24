@@ -15,7 +15,7 @@ export const fetchSingleCharacterController = async (req, res) => {
   if (character) {
     res.status(200).json({
       status: "success",
-      character: character
+      character
     });
   } else {
     res.status(404).json({
