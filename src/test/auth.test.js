@@ -21,7 +21,7 @@ describe("Auth Controller", () => {
       const payload = {
         username: "test",
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
       chai
         .request(app)
@@ -37,7 +37,7 @@ describe("Auth Controller", () => {
       const payload = {
         username: "e",
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
 
       chai
@@ -54,7 +54,7 @@ describe("Auth Controller", () => {
       const payload = {
         username: "test",
         email: "ewachira",
-        password: "testing254"
+        password: "@testing254"
       };
 
       chai
@@ -88,7 +88,7 @@ describe("Auth Controller", () => {
       const object = new Soul({
         username: "test",
         email: "ewachira254@gmail.com",
-        password: "testing254",
+        password: "@testing254",
         role: "Admin",
         verification_code: 4120
       });
@@ -96,7 +96,7 @@ describe("Auth Controller", () => {
       const payload = {
         username: "test",
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
 
       object.save().then(() => {
@@ -123,7 +123,7 @@ describe("Auth Controller", () => {
       const payload = {
         username: "test",
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
 
       object.save().then(() => {
@@ -144,7 +144,7 @@ describe("Auth Controller", () => {
       const object = new Soul({
         email: "ewachira254@gmail.com",
         username: "test",
-        password: bcrypt.hashSync("testing254", 10),
+        password: bcrypt.hashSync("@testing254", 10),
         role: "Admin",
         verification_code: 4121,
         is_verified: true
@@ -152,7 +152,7 @@ describe("Auth Controller", () => {
 
       const payload = {
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
 
       object.save().then(() => {
@@ -179,7 +179,7 @@ describe("Auth Controller", () => {
 
       const payload = {
         email: "ewachira254@gmail.com",
-        password: "testing25"
+        password: "@testing25"
       };
 
       object.save().then(() => {
@@ -197,7 +197,7 @@ describe("Auth Controller", () => {
     it("should login if account is not verified/not found", done => {
       const payload = {
         email: "ewachira254@gmail.com",
-        password: "testing254"
+        password: "@testing254"
       };
 
       mongoose.connection.dropDatabase();
