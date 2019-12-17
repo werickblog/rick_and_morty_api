@@ -1,7 +1,10 @@
 import AdminController from "./adminController";
+import DatasetController from "./datasetControllers";
 
 const admin = new AdminController();
+const datasets = new DatasetController();
 
+// Auth middlewares
 export const createAdminAccount = (req, res) => {
   const { email, password, username } = req.body;
   admin
@@ -73,6 +76,60 @@ export const fetchUserByMail = (req, res) => {
     })
     .catch(err => {
       /* istanbul ignore next */
+      res.status(err.status || 400).json({
+        message: err.message
+      });
+    });
+};
+
+// Datasets controller
+export const addCharacter = (req, res) => {
+  datasets
+    .addCharacter(req.body)
+    .then(Res => {
+      res.status(201).json(Res);
+    })
+    .catch(err => {
+      res.status(err.status || 400).json({
+        message: err.message
+      });
+    });
+};
+
+export const addLocation = (req, res) => {
+  datasets
+    .addLocation(req.body)
+    .then(Res => {
+      res.status(201).json(Res);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(err.status || 400).json({
+        message: err.message
+      });
+    });
+};
+
+export const addObject = (req, res) => {
+  datasets
+    .addObject(req.body)
+    .then(Res => {
+      res.status(201).json(Res);
+    })
+    .catch(err => {
+      res.status(err.status || 400).json({
+        message: err.message
+      });
+    });
+};
+
+export const addQuote = (req, res) => {
+  datasets
+    .addQuote(req.body)
+    .then(Res => {
+      res.status(201).json(Res);
+    })
+    .catch(err => {
       res.status(err.status || 400).json({
         message: err.message
       });

@@ -13,10 +13,6 @@ const quoteSchema = Schema(
       ref: "Character",
       required: false
     },
-    bio: {
-      type: String,
-      required: true
-    },
     quote_id: {
       type: Number, 
       required: true
