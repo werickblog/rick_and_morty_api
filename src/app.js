@@ -5,19 +5,21 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import chalk from "chalk";
+import logs from "morgan";
 import mongoose from "mongoose";
 import rateLimit from "express-rate-limit";
 
 import config from "./config";
 
-import v1 from './api/v1'
+import v1 from "./api/v1";
+import admin from "./api/admin";
 
 const app = express();
 
 // API rate limit initialization
 
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
+  windowMs: 15 * 60 * 1000,
   max: 1000,
   message: {
     message:
@@ -37,6 +39,9 @@ dotenv.config();
 // Define json body reader
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Request logger
+app.use(logs("dev"));
 
 app.use(express.static(__dirname, { dotfiles: "allow" }));
 
@@ -66,7 +71,8 @@ mongoose.connection.on("open", err => {
 app.set("port", process.env.PORT || 5000);
 
 // Endpoints
-app.use('/api', v1) // v1 API endpoints
+app.use("/api", v1); // v1 API endpoints
+app.use("/admin", admin);
 
 // Initialize server
 const server = app.listen(app.get("port"), err => {
