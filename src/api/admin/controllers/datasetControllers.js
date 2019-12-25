@@ -21,6 +21,186 @@ class Datasets {
     };
   }
 
+  async updateCharacter(character_id, data) {
+    const character = await Character.findOne({ character_id });
+
+    if (character) {
+      Object.assign(character, {
+        ...data
+      });
+
+      await character.save();
+
+      return {
+        message: "Character updated successfully",
+        character
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Character does not exist"
+      };
+    }
+  }
+
+  async deleteCharacter(character_id) {
+    const character = await Character.findOne({ character_id });
+
+    if (character) {
+      character.remove();
+
+      return {
+        message: "Character deleted",
+        character
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Character was not found"
+      };
+    }
+  }
+
+  async fetchCharacters() {
+    const characters = await Character.find()
+      .populate("origin", [
+        "name",
+        "type",
+        "bio",
+        "dimension",
+        "url",
+        "location_id",
+        "image"
+      ])
+      .populate("home_planet", [
+        "name",
+        "type",
+        "bio",
+        "dimension",
+        "url",
+        "location_id",
+        "image"
+      ]);
+
+    return {
+      characters
+    };
+  }
+
+  async fetchSingleCharacter(character_id) {
+    const character = await Character.findOne({ character_id });
+
+    if (character) {
+      return {
+        character
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Character not found"
+      };
+    }
+  }
+
+  async fetchLocations() {
+    const locations = await Location.find();
+
+    return {
+      locations
+    };
+  }
+
+  async fetchSingleLocation(location_id) {
+    const location = await Location.findOne({ location_id });
+
+    if (location) {
+      return {
+        location
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Location was not found"
+      };
+    }
+  }
+
+  async fetchObjects() {
+    const objects = await Obj.find({})
+      .populate("origin", ["name", "type", "dimension", "location_id", "image"])
+      .populate("relationship", ["name", "aka", "character_id", "image"]);
+
+    return {
+      objects
+    };
+  }
+
+  async fetchSingleObject(object_id) {
+    const object = await Obj.findOne({ object_id })
+      .populate("origin", ["name", "type", "dimension", "location_id", "image"])
+      .populate("relationship", ["name", "aka", "character_id", "image"]);
+
+    if (object) {
+      return {
+        object
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Object not found"
+      };
+    }
+  }
+
+  async fetchQuotes() {
+    const quotes = await Quote.find().populate("by", [
+      "name",
+      "aka",
+      "species",
+      "age",
+      "status",
+      "occupation",
+      "image",
+      "url",
+      "dimension",
+      "bio",
+      "character_id",
+      "gender"
+    ]);
+
+    return {
+      quotes
+    };
+  }
+
+  async fetchSingleQuote(quote_id) {
+    const quote = await Quote.findOne({ quote_id }).populate("by", [
+      "name",
+      "aka",
+      "species",
+      "age",
+      "status",
+      "occupation",
+      "image",
+      "url",
+      "dimension",
+      "bio",
+      "character_id",
+      "gender"
+    ]);
+
+    if (quote) {
+      return {
+        quote
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Quote was not found"
+      };
+    }
+  }
+
   async addLocation(data) {
     data.location_id = await this.generateId();
     const location = new Location(data);
@@ -31,6 +211,46 @@ class Datasets {
       message: "Location added successfully",
       location
     };
+  }
+
+  async updateLocation(location_id, data) {
+    const location = await Location.findOne({ location_id });
+
+    if (location) {
+      Object.assign(location, {
+        ...data
+      });
+
+      await location.save();
+
+      return {
+        message: "Location has been updated",
+        location
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Location was not found"
+      };
+    }
+  }
+
+  async deleteLocation(location_id) {
+    const location = await Location.findOne({ location_id });
+
+    if (location) {
+      location.remove();
+
+      return {
+        message: "Location has been removed",
+        location
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Location was not found"
+      };
+    }
   }
 
   async addObject(data) {
@@ -45,6 +265,46 @@ class Datasets {
     };
   }
 
+  async updateObject(object_id, data) {
+    const object = await Object.findOne({ object_id });
+
+    if (object) {
+      Object.assign(object, {
+        ...data
+      });
+
+      await object.save();
+
+      return {
+        message: "Object has been updated",
+        object
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Object was not found"
+      };
+    }
+  }
+
+  async deleteObject(object_id) {
+    const object = await Object.findOne({ object_id });
+
+    if (object) {
+      object.remove();
+
+      return {
+        message: "Object has been removed",
+        object
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Object was not found"
+      };
+    }
+  }
+
   async addQuote(data) {
     data.quote_id = await this.generateId();
     const quote = new Quote(data);
@@ -55,6 +315,46 @@ class Datasets {
       message: "Quote added successfully",
       quote
     };
+  }
+
+  async updateQuote(quote_id, data) {
+    const quote = await Quote.findOne({ quote_id });
+
+    if (quote) {
+      Object.assign(quote, {
+        ...data
+      });
+
+      await quote.save();
+
+      return {
+        message: "Quote update successfully",
+        quote
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Quote was not found"
+      };
+    }
+  }
+
+  async deleteQuote(quote_id) {
+    const quote = await Quote.findOne({ quote_id });
+
+    if (quote) {
+      quote.remove();
+
+      return {
+        message: "Quote has been removed",
+        quote
+      };
+    } else {
+      throw {
+        status: 404,
+        message: "Quote was not found"
+      };
+    }
   }
 }
 
