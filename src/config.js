@@ -14,7 +14,11 @@ const configuration = {
       : process.env.NODE_ENV === "test"
       /* istanbul ignore next */
       ? process.env.TEST_DB_URL
-      : process.env.DEV_DB_URL
+      : process.env.DEV_DB_URL,
+  zoho_mail: process.env.ZOHO_MAIL,
+  zoho_password: process.env.ZOHO_PASS,
+  secret_key: process.env.SECRET_KEY,
+  frontend_url: process.env.FRONTEND_URL
 };
 
 export default configuration;

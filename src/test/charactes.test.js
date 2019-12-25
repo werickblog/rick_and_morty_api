@@ -69,4 +69,8 @@ describe("Character tests suite", () => {
       });
     });
   });
+
+  describe("POST/PUT/DELETE /admin/functions/add-character", () => {
+    
+  })
 });

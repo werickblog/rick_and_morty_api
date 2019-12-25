@@ -34,6 +34,10 @@ const objectSchema = Schema(
     image: {
       type: String,
       required: true
+    },
+    url: {
+      type: String,
+      required: false
     }
   },
   {
