@@ -1,13 +1,25 @@
 import Tool from "../../../model/object";
 
 export const fetchObjectsController = async (req, res) => {
-  const tools = await Tool.find()
+  let pageNo = parseFloat(req.query.pageNo);
+  let size = parseInt(req.query.size);
+  let query = {};
+  if (pageNo < 0 || pageNo === 0 || !pageNo) {
+    pageNo = 1;
+  }
+  query.skip = size * (pageNo - 1);
+  const tools = await Tool.find(null, null, {
+    skip: query.skip,
+    limit: size
+  })
     .populate("origin", ["name", "type", "dimension", "location_id", "image"])
     .populate("relationship", ["name", "aka", "character_id", "image"]);
 
   res.status(200).json({
     status: "success",
-    objects: tools
+    objects: tools,
+    per_page: size,
+    page: pageNo
   });
 };
 
