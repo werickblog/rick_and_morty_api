@@ -2539,6 +2539,17 @@ mongodb@3.3.4:
   optionalDependencies:
     saslprep "^1.0.0"
 
+"mongodb@>= 3.3.4 < 4.0.0":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.4.1.tgz#0d15e57e0ea0fc85b7a4fb9291b374c2e71652dc"
+  integrity sha512-juqt5/Z42J4DcE7tG7UdVaTKmUC6zinF4yioPfpeOSNBieWSK6qCY+0tfGQcHLKrauWPDdMZVROHJOa8q2pWsA==
+  dependencies:
+    bson "^1.1.1"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
@@ -2998,6 +3009,15 @@ range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
+
+rate-limit-mongo@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/rate-limit-mongo/-/rate-limit-mongo-2.1.0.tgz#abc73de4ad3eb34e42c700b5b0b6f80e7866ef42"
+  integrity sha512-Rwbj6UXjxd54JljIDiEO+6Hj09BrrD6izX+6xEnP7l0/xAaZvY9rhuNSbk3UNWolMHyIH1B/FeRty503WBKRPA==
+  dependencies:
+    mongodb ">= 3.3.4 < 4.0.0"
+    twostep "0.4.2"
+    underscore "1.9.1"
 
 raw-body@2.4.0:
   version "2.4.0"
@@ -3577,6 +3597,11 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
+twostep@0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/twostep/-/twostep-0.4.2.tgz#84bc5087a871574d1ebf7be3079e03e122d415b6"
+  integrity sha1-hLxQh6hxV00ev3vjB54D4SLUFbY=
+
 type-check@~0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
@@ -3604,6 +3629,11 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.20.3"
     source-map "~0.6.1"
+
+underscore@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

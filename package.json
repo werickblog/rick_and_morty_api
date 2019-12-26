@@ -23,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.12",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.3.1"
+    "nodemailer": "^6.3.1",
+    "rate-limit-mongo": "^2.1.0"
   },
   "name": "rick_and_morty_api",
   "version": "1.0.0",

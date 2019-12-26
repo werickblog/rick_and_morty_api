@@ -8,6 +8,7 @@ import chalk from "chalk";
 import logs from "morgan";
 import mongoose from "mongoose";
 import rateLimit from "express-rate-limit";
+import MongoStore from "rate-limit-mongo";
 
 import config from "./config";
 
@@ -23,14 +24,19 @@ const apiLimiter = rateLimit({
   max: 1000,
   message: {
     message:
-      "Exceeded your allocated API calls, try again after a couple of minutes",
+      "Exceeded your allocated API calls, 1000 requests a day",
     api_calls_limit: 1000,
-    api_calls_renewal_time: "15 minutes"
+    api_calls_renewal_time: "1 day"
   },
-  statusCode: 429
+  statusCode: 429,
+  store: new MongoStore({
+    uri: config.mongo,
+    expireTimeMs: 864000000,
+    collectionName: "rateLimits"
+  })
 });
 
-app.use("/api/", apiLimiter);
+app.use("/api", apiLimiter);
 
 // Configure Dotenv to read environment variables from .env file
 // automatically
