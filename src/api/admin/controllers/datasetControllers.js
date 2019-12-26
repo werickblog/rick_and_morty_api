@@ -61,8 +61,18 @@ class Datasets {
     }
   }
 
-  async fetchCharacters() {
-    const characters = await Character.find()
+  async fetchCharacters(_query) {
+    let pageNo = parseFloat(_query.pageNo);
+    let size = parseInt(_query.size);
+    let query = {};
+    if (pageNo < 0 || pageNo === 0 || !pageNo) {
+      pageNo = 1;
+    }
+    query.skip = size * (pageNo - 1);
+    const characters = await Character.find(null, null, {
+      skip: query.skip,
+      limit: size
+    })
       .populate("origin", [
         "name",
         "type",
@@ -83,7 +93,9 @@ class Datasets {
       ]);
 
     return {
-      characters
+      characters,
+      per_page: size,
+      page: pageNo
     };
   }
 
@@ -102,11 +114,23 @@ class Datasets {
     }
   }
 
-  async fetchLocations() {
-    const locations = await Location.find();
+  async fetchLocations(_query) {
+    let pageNo = parseFloat(_query.pageNo);
+    let size = parseInt(_query.size);
+    let query = {};
+    if (pageNo < 0 || pageNo === 0 || !pageNo) {
+      pageNo = 1;
+    }
+    query.skip = size * (pageNo - 1);
+    const locations = await Location.find(null, null, {
+      skip: query.skip,
+      limit: size
+    });
 
     return {
-      locations
+      locations,
+      per_page: size,
+      page: pageNo
     };
   }
 
@@ -125,13 +149,25 @@ class Datasets {
     }
   }
 
-  async fetchObjects() {
-    const objects = await Obj.find({})
+  async fetchObjects(_query) {
+    let pageNo = parseFloat(_query.pageNo);
+    let size = parseInt(_query.size);
+    let query = {};
+    if (pageNo < 0 || pageNo === 0 || !pageNo) {
+      pageNo = 1;
+    }
+    query.skip = size * (pageNo - 1);
+    const objects = await Obj.find(null, null, {
+      skip: query.skip,
+      limit: size
+    })
       .populate("origin", ["name", "type", "dimension", "location_id", "image"])
       .populate("relationship", ["name", "aka", "character_id", "image"]);
 
     return {
-      objects
+      objects,
+      per_page: size,
+      page: pageNo
     };
   }
 
@@ -152,8 +188,18 @@ class Datasets {
     }
   }
 
-  async fetchQuotes() {
-    const quotes = await Quote.find().populate("by", [
+  async fetchQuotes(_query) {
+    let pageNo = parseFloat(_query.pageNo);
+    let size = parseInt(_query.size);
+    let query = {};
+    if (pageNo < 0 || pageNo === 0 || !pageNo) {
+      pageNo = 1;
+    }
+    query.skip = size * (pageNo - 1);
+    const quotes = await Quote.find(null, null, {
+      skip: query.skip,
+      limit: size
+    }).populate("by", [
       "name",
       "aka",
       "species",
@@ -169,7 +215,9 @@ class Datasets {
     ]);
 
     return {
-      quotes
+      quotes,
+      per_page: size,
+      page: pageNo
     };
   }
 

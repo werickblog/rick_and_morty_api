@@ -1,7 +1,17 @@
 import Character from "../../../model/character";
 
 export const fetchCharacters = async (req, res) => {
-  const characters = await Character.find()
+  let pageNo = parseFloat(req.query.pageNo);
+  let size = parseInt(req.query.size);
+  let query = {};
+  if (pageNo < 0 || pageNo === 0 || !pageNo) {
+    pageNo = 1;
+  }
+  query.skip = size * (pageNo - 1);
+  const characters = await Character.find(null, null, {
+    skip: query.skip,
+    limit: size
+  })
     .populate("origin", [
       "name",
       "type",
@@ -23,7 +33,9 @@ export const fetchCharacters = async (req, res) => {
 
   res.status(200).json({
     status: "success",
-    characters
+    characters,
+    per_page: size,
+    page: pageNo
   });
 };
 

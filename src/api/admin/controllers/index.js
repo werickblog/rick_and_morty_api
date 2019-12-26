@@ -241,7 +241,7 @@ export const deleteObject = (req, res) => {
 };
 
 export const fetchCharacters = (req, res) => {
-  datasets.fetchCharacters().then(Res => {
+  datasets.fetchCharacters(req.query).then(Res => {
     res.status(200).json(Res);
   });
 };
@@ -261,7 +261,7 @@ export const fetchSingleCharacter = (req, res) => {
 };
 
 export const fetchLocations = (req, res) => {
-  datasets.fetchLocations().then(Res => {
+  datasets.fetchLocations(req.query).then(Res => {
     res.status(200).json(Res);
   });
 };
@@ -281,7 +281,7 @@ export const fetchSingleLocation = (req, res) => {
 };
 
 export const fetchObjects = (req, res) => {
-  datasets.fetchObjects().then(Res => {
+  datasets.fetchObjects(req.query).then(Res => {
     res.status(200).json(Res);
   }).catch(err => {
     res.status(400).json({
@@ -305,7 +305,7 @@ export const fetchSingleObject = (req, res) => {
 };
 
 export const fetchQuotes = (req, res) => {
-  datasets.fetchQuotes().then(Res => {
+  datasets.fetchQuotes(req.query).then(Res => {
     res.status(200).json(Res);
   });
 };

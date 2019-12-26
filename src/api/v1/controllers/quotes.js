@@ -1,7 +1,17 @@
 import Quotes from "../../../model/quote";
 
 export const fetchQuotesController = async (req, res) => {
-  const quotes = await Quotes.find().populate("by", [
+  let pageNo = parseFloat(req.query.pageNo);
+  let size = parseInt(req.query.size);
+  let query = {};
+  if (pageNo < 0 || pageNo === 0 || !pageNo) {
+    pageNo = 1;
+  }
+  query.skip = size * (pageNo - 1);
+  const quotes = await Quotes.find(null, null, {
+    skip: query.skip,
+    limit: size
+  }).populate("by", [
     "name",
     "aka",
     "species",
@@ -18,7 +28,9 @@ export const fetchQuotesController = async (req, res) => {
 
   res.status(200).json({
     status: "success",
-    quotes
+    quotes,
+    per_page: size,
+    page: pageNo
   });
 };
 
