@@ -56,7 +56,7 @@ All of the resources mentioned above will be paginated by default with a limit o
 To fetch all characters in the database use `/characters` endpoint
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/characters?pageNo=1&size=20
+https://rickandmortyapi.werick.codes/api/v1/characters?pageNo=1&size=20
 ```
 
 **Response**
@@ -114,7 +114,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/characters?pageNo=1&size=20
 To fetch a single character use endpoint \`/characters/:character\_id
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/characters
+https://rickandmortyapi.werick.codes/api/v1/characters
 ```
 
 **Response**
@@ -182,7 +182,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/characters
 To fetch all locations use endpoint `/locations`
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/locations?pageNo=1&size=20
+https://rickandmortyapi.werick.codes/api/v1/locations?pageNo=1&size=20
 ```
 
 **Response**
@@ -215,7 +215,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/locations?pageNo=1&size=20
 To fetch a single location use endpoint `/locations/:location_id`
 
 ```bash
-GET https://rickandmorty.werick.codes/api/v1/locations/:location_id
+https://rickandmorty.werick.codes/api/v1/locations/:location_id
 ```
 
 **Response**
@@ -259,7 +259,7 @@ GET https://rickandmorty.werick.codes/api/v1/locations/:location_id
 To fetch all locations use endpoint `/objects`
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/objects?pageNo=1&size=20
+https://rickandmortyapi.werick.codes/api/v1/objects?pageNo=1&size=20
 ```
 
 **Response**
@@ -306,7 +306,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/objects?pageNo=1&size=20
 To fetch a single location use endpoint `/objects/:object_id`
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/objects/:object_id
+https://rickandmortyapi.werick.codes/api/v1/objects/:object_id
 ```
 
 **Response**
@@ -359,7 +359,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/objects/:object_id
 To fetch all quotes you send a request to this endpoint `/quotes`
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/quotes?pageNo=1&size=20
+https://rickandmortyapi.werick.codes/api/v1/quotes?pageNo=1&size=20
 ```
 
 **Response**
@@ -402,7 +402,7 @@ GET https://rickandmortyapi.werick.codes/api/v1/quotes?pageNo=1&size=20
 To fetch a single quote, you will send a request `/quotes`
 
 ```bash
-GET https://rickandmortyapi.werick.codes/api/v1/quotes
+https://rickandmortyapi.werick.codes/api/v1/quotes
 ```
 
 **Response**
