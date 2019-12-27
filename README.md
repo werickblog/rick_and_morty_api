@@ -20,6 +20,12 @@ The API  was built with **NodeJS/Express** with **Mongo** as a database. I used 
 
 > This API is an open-source project so feel free to contribute on [Github](https://github.com/werickblog/rick_and_morty_api)
 
+### Copyright
+
+Rick and Morty is created by Justin Roiland and Dan Harmon for [Adult Swim](https://www.adultswim.com/). The data and images are used without claim of ownership and belong to their respective owners.
+
+This API is open source and uses a MIT license. All the data has been collected from open sources such as [http://rickandmorty.wikia.com/](http://rickandmorty.wikia.com/).
+
 ### How to reach out?
 
 You can reach out to me via email: **erick@werick.codes** or twitter:[ **wachira\_dev**](https://twitter.com/wachira_dev).
