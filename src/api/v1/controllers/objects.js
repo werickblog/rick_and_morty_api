@@ -8,6 +8,9 @@ export const fetchObjectsController = async (req, res) => {
     pageNo = 1;
   }
   query.skip = size * (pageNo - 1);
+  if (size > 20) {
+    size = 20
+  }
   const tools = await Tool.find(null, null, {
     skip: query.skip,
     limit: size
