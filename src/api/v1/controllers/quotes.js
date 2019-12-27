@@ -8,6 +8,9 @@ export const fetchQuotesController = async (req, res) => {
     pageNo = 1;
   }
   query.skip = size * (pageNo - 1);
+  if (size > 20) {
+    size = 20;
+  }
   const quotes = await Quotes.find(null, null, {
     skip: query.skip,
     limit: size

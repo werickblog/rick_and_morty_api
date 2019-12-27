@@ -8,6 +8,9 @@ export const fetchCharacters = async (req, res) => {
     pageNo = 1;
   }
   query.skip = size * (pageNo - 1);
+  if (size > 20) {
+    size = 20
+  }
   const characters = await Character.find(null, null, {
     skip: query.skip,
     limit: size
